@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>SuKaNu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary-color: #4CAF50; /* Ana renk */
+            --secondary-color: #ffffff; /* Beyaz */
+            --bg-color: #f8f9fa; /* Açık gri */
+            --text-color: #333333; /* Koyu gri */
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        h2 {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .container-fluid {
+            padding: 40px;
+        }
+        .row {
+            margin-bottom: 30px;
+        }
+        .table {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .table thead th {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .table tbody tr:hover {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        .page-title {
+            margin-top: 5px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 10px;
+        }
+    </style>
+    <!--datatables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">SuKaNu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Ana Sayfa</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+    
+        <h1 class="page-title text-center">{{target[1]}} Results</h1>
+
+    
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Subfinder Results</h2>
+                <table class="table" id="subfinder">
+                    <thead>
+                        <tr>
+                            <th scope="col">Domain</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in subfinder_results %}
+                        <tr>
+                            <td>{{ result[2] }}</td>
+                            <td><span class="badge badge-success text-uppercase">{{ result[3] }}</span></td>
+                            <td><span class="badge badge-info">{{ result[4] }}</span></td>
+                            <td>
+                                <a href="/add-to-scan?domain={{ result[2] }}" class="btn btn-primary btn-sm">Add to Scan</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Katana Results</h2>
+                <table class="table" id="katana">
+                    <thead>
+                        <tr>
+                            <th scope="col">Domain</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in katana_results %}
+                        <tr>
+                            <td>{{ result[2] }}</td>
+                            <td><span class="badge badge-success text-uppercase">{{ result[3] }}</span></td>
+                            <td><span class="badge badge-info">{{ result[4] }}</span></td>
+                            <td>
+                                <a href="/add-to-scan?domain={{ result[2] }}" class="btn btn-primary btn-sm">Add to Scan</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Nuclei Results</h2>
+                <table class="table" id="nuclei">
+                    <thead>
+                        <tr>
+                            <th scope="col">Category</th>
+                            <th scope="col">Protocol</th>
+                            <th scope="col">Level</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Extra Info</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in nuclei_results %}
+                        <tr>
+                            <td>{{ result[2] }}</td>
+                            <td>{{ result[3] }}</td>
+                            <td>{{ result[4] }}</td>
+                            <td>{{ result[5] }}</td>
+                            <td>{{ result[6] }}</td>
+                            <td><span class="badge badge-success text-uppercase">{{ result[7] }}</span></td>
+                            <td><span class="badge badge-info">{{ result[8] }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--datatables-->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#subfinder, #katana, #nuclei').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                language: {
+                    search: "Ara:",
+                    lengthMenu: "Göster _MENU_ kayıt",
+                    info: "Toplam _TOTAL_ kayıt",
+                }
+            });
+        });
+    </script>
+  </body>
+</html>
