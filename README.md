@@ -119,10 +119,8 @@
 
 ###
 
-<img src="https://raw.githubusercontent.com/milkaytanoglu/milkaytanoglu/output/snake.svg" alt="Snake animation" />
-
-###
-
-<img src="https://raw.githubusercontent.com/milkaytanoglu/milkaytanoglu/output/snake.svg" alt="Snake animation" />
+<div align="center">
+  <img src="https://profile-counter.glitch.me/milkaytanoglu/count.svg?"  />
+</div>
 
 ###
