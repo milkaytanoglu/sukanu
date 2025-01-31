@@ -52,7 +52,7 @@
 
 ###
 
-<p align="left">git clone https://github.com/kullaniciadi/sukanu.git</p>
+<p align="left">git clone https://github.com/milkaytanoglu/sukanu.git</p>
 
 ###
 
